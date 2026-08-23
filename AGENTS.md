@@ -20,7 +20,7 @@ upgrades, locale / keyboard / console / timezone, core CLI tooling.
 
 ## Defaults (system-wide)
 
-- Every role depends on `odem.base.assert_debian13` (Debian 13 only).
+- Every role depends on `odem.base.common` (Debian 13 only).
 - Each `system_settings` sub-area is conditionally included via the toggle pattern documented in the top-level `manage/AGENTS.md`.
 - `system_tools` has 7 sub-area toggles (`archives`, `build`, `core`, `fm`, `net`, `transfer`, `stats`); defaults to all true.
 

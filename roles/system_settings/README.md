@@ -25,7 +25,7 @@ Configure locale, keyboard, console, and timezone
 
 ## Dependencies
 
-- `odem.base.assert_debian13`
+- `odem.base.common`
 
 ## Example usage
 

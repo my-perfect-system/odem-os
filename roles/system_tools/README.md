@@ -22,7 +22,7 @@ Install essential CLI tools, grouped in configurable categories
 
 ## Dependencies
 
-- `odem.base.assert_debian13`
+- `odem.base.common`
 
 ## Example usage
 

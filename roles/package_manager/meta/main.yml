@@ -15,4 +15,4 @@ galaxy_info:
     - apt
     - odem-debian
 dependencies:
-  - role: odem.base.assert_debian13
+  - role: odem.base.common

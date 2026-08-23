@@ -25,7 +25,7 @@ Configure APT sources, upgrade packages, and set up unattended-upgrades
 
 ## Dependencies
 
-- `odem.base.assert_debian13`
+- `odem.base.common`
 
 ## Example usage
 
