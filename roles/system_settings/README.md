@@ -6,12 +6,13 @@ role: system_settings
 
 # `odem.os.system_settings`
 
-Configure locale, keyboard, console, and timezone
+Configure hostname, locale, keyboard, console, and timezone
 
 ## Default variables
 
 | Variable | Default | Description |
 |---|---|---|
+| `system_settings_hostname` | `{{ inventory_hostname }}` | System hostname (set via hostname and /etc/hosts) |
 | `system_settings_console_charset` | `UTF-8` | Console character map (CHARMAP) |
 | `system_settings_console_codeset` | `Lat15` | Console code set (CODESET) |
 | `system_settings_console_fontface` | `Terminus` | Console font face (FONTFACE) |

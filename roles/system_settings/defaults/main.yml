@@ -1,4 +1,6 @@
 ---
+system_settings_hostname: "{{ inventory_hostname }}"
+
 system_settings_timezone: "Europe/Berlin"
 
 system_settings_locale_name: "en_US.UTF-8"

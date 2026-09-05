@@ -1,8 +1,12 @@
 ---
 argument_specs:
   main:
-    short_description: Configure locale, keyboard, console, and timezone
+    short_description: Configure hostname, locale, keyboard, console, and timezone
     options:
+      system_settings_hostname:
+        type: str
+        default: "{{ inventory_hostname }}"
+        description: "System hostname (set via hostname and /etc/hosts)"
       system_settings_timezone:
         type: str
         default: "Europe/Berlin"
