@@ -1,0 +1,9 @@
+---
+# Fragment for the /etc/hosts custom entries feature.
+# Compiles into changelogs/changelog.yaml at release time.
+minor_changes:
+  - |
+    `system_settings` hostname sub-step now also populates `/etc/hosts` with
+    custom entries via the new `system_settings_hosts_entries` variable (list
+    of dicts with `ip`, `names`, and optional `fqdn`). Each entry is written as
+    a single `/etc/hosts` line and kept in sync idempotently.

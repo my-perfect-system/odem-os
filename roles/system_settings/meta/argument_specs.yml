@@ -7,6 +7,41 @@ argument_specs:
         type: str
         default: "{{ inventory_hostname }}"
         description: "System hostname (set via hostname and /etc/hosts)"
+      system_settings_hosts_entries:
+        type: list
+        default: []
+        elements: dict
+        description:
+          - Custom /etc/hosts entries. Each entry maps an IP to one or more
+            hostnames plus an optional FQDN, written as a single /etc/hosts line.
+        options:
+          ip:
+            type: str
+            required: true
+            description: "IP address for the /etc/hosts line"
+          names:
+            type: list
+            required: true
+            elements: str
+            description: "One or more hostnames/aliases for this IP"
+          fqdn:
+            type: str
+            required: false
+            description: "Optional fully-qualified domain name appended to the line"
+      system_settings_install_packages:
+        type: list
+        default: []
+        elements: str
+        description: "Additional packages to install (apt)"
+      system_settings_remove_packages:
+        type: list
+        default: []
+        elements: str
+        description: "Packages to remove (apt), e.g. systemd-resolved"
+      system_settings_dns_server:
+        type: str
+        default: ""
+        description: "Default DNS server written as a nameserver entry into /etc/resolv.conf (leave empty to skip)"
       system_settings_timezone:
         type: str
         default: "Europe/Berlin"

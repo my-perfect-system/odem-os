@@ -9,3 +9,13 @@
     regexp: '^127\.0\.1\.1\s'
     line: "127.0.1.1\t{{ system_settings_hostname }}"
     state: present
+
+- name: Populate /etc/hosts custom entries
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^{{ item.ip | regex_escape() }}\s'
+    line: "{{ item.ip }}\t{{ (item.names + ([item.fqdn] if item.fqdn is defined else [])) | join(' ') }}"
+    state: present
+  loop: "{{ system_settings_hosts_entries }}"
+  loop_control:
+    label: "{{ item.ip }}"

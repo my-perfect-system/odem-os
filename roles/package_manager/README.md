@@ -25,7 +25,7 @@ Configure APT sources, upgrade packages, and set up unattended-upgrades
 
 ## Dependencies
 
-- `odem.base.common`
+- `odem.base.identity`
 
 ## Example usage
 

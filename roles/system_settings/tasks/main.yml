@@ -13,3 +13,6 @@
 
 - name: Configure time and timezone
   ansible.builtin.include_tasks: time.yml
+
+- name: Configure tools and DNS
+  ansible.builtin.include_tasks: tools.yml

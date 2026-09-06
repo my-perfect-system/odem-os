@@ -18,4 +18,4 @@ galaxy_info:
     - console
     - odem-debian
 dependencies:
-  - role: odem.base.common
+  - role: odem.base.identity

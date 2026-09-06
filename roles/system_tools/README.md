@@ -22,7 +22,7 @@ Install essential CLI tools, grouped in configurable categories
 
 ## Dependencies
 
-- `odem.base.common`
+- `odem.base.identity`
 
 ## Example usage
 

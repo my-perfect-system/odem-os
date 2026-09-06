@@ -1,0 +1,8 @@
+---
+# Fragment for the common → identity merge.
+# Compiles into changelogs/changelog.yaml at release time.
+minor_changes:
+  - |
+    Switched the `meta/main.yml` dependency of `package_manager`, `system_settings`,
+    and `system_tools` from the removed `odem.base.common` role to
+    `odem.base.identity` (which now carries the Debian 13 assert + global defaults).

@@ -1,0 +1,11 @@
+---
+# Fragment for the tools + DNS configuration feature.
+# Compiles into changelogs/changelog.yaml at release time.
+minor_changes:
+  - |
+    `system_settings` gained a `tools.yml` sub-step that installs packages from
+    `system_settings_install_packages`, removes packages from
+    `system_settings_remove_packages` (e.g. `systemd-resolved`), and writes a
+    static `nameserver` entry into `/etc/resolv.conf` from
+    `system_settings_dns_server` (replacing any symlink, for hosts where
+    systemd-resolved is disabled).

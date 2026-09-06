@@ -15,4 +15,4 @@ galaxy_info:
     - essentials
     - odem-debian
 dependencies:
-  - role: odem.base.common
+  - role: odem.base.identity

@@ -1,0 +1,26 @@
+---
+- name: Install system tools
+  ansible.builtin.package:
+    name: "{{ system_settings_install_packages }}"
+    state: present
+    update_cache: true
+  become: true
+  when: system_settings_install_packages | length > 0
+
+- name: Remove undesired system tools
+  ansible.builtin.package:
+    name: "{{ system_settings_remove_packages }}"
+    state: absent
+  become: true
+  when: system_settings_remove_packages | length > 0
+
+- name: Write nameserver to resolv.conf
+  ansible.builtin.copy:
+    dest: /etc/resolv.conf
+    content: "nameserver {{ system_settings_dns_server }}\n"
+    owner: root
+    group: root
+    mode: "0644"
+    follow: false
+  become: true
+  when: system_settings_dns_server | default('') | length > 0

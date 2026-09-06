@@ -15,16 +15,16 @@ upgrades, locale / keyboard / console / timezone, core CLI tooling.
 | Role | Description | Complexity |
 |---|---|---|
 | `odem.os.package_manager` | Configure `/etc/apt/sources.list` (4 pockets × components × deb-src), install base apt packages, configure unattended-upgrades. | 2 |
-| `odem.os.system_settings` | Configure locale, keyboard, console (kmscon / plymouth), and timezone / chrony. 4 area-specific sub-areas, each with its own handlers. | 2 |
+| `odem.os.system_settings` | Configure hostname + `/etc/hosts` (custom entries), locale, keyboard, console (kmscon / plymouth), timezone / chrony, and a `tools.yml` sub-step (install/remove packages + static `/etc/resolv.conf` nameserver). One sub-file per concern. | 2 |
 | `odem.os.system_tools` | Apt-by-category groups (archives, build, core, file-manager, network, transfer, statistics). Each gated by a `<group>_enable_<area>` toggle. | 1 |
 
 ## Defaults (system-wide)
 
-- Every role depends on `odem.base.common` (Debian 13 only).
-- Each `system_settings` sub-area is conditionally included via the toggle pattern documented in the top-level `manage/AGENTS.md`.
+- Every role depends on `odem.base.identity` (Debian 13 only).
+- `system_settings` also carries `system_settings_hosts_entries` (custom `/etc/hosts` entries), `system_settings_install_packages` / `system_settings_remove_packages` (apt install/remove lists), and `system_settings_dns_server` (a static `nameserver` written to `/etc/resolv.conf`, replacing any symlink — for hosts where `systemd-resolved` is removed).
 - `system_tools` has 7 sub-area toggles (`archives`, `build`, `core`, `fm`, `net`, `transfer`, `stats`); defaults to all true.
 
 ## Conventions
 
-- **Multi-file sub-areas are intentional** — `system_settings` and `system_tools` are organized by concern (one file per sub-area), not by phase. Flattening would mix unrelated configs.
+- **Multi-file sub-areas are intentional** — `system_settings` and `system_tools` are organized by concern (one file per sub-area, e.g. `system_settings` `hostname.yml` / `tools.yml`), not by phase. Flattening would mix unrelated configs.
 - **`package_manager` toggle pattern** — `package_manager_enable_repos_{main,updates,backports,security}`, `package_manager_enable_auto_upgrades`. Disabled sub-steps skip without effect.

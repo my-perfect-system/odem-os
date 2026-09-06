@@ -40,7 +40,7 @@ ansible-galaxy collection install odem.os
 
 ## Host prerequisites
 
-Every role in this collection declares `odem.base.common` as a
+Every role in this collection declares `odem.base.identity` as a
 dependency, so the play fails fast if the target host isn't Debian 13.
 
 ## Documentation

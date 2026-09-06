@@ -13,6 +13,10 @@ Configure hostname, locale, keyboard, console, and timezone
 | Variable | Default | Description |
 |---|---|---|
 | `system_settings_hostname` | `{{ inventory_hostname }}` | System hostname (set via hostname and /etc/hosts) |
+| `system_settings_hosts_entries` | `[]` | Custom /etc/hosts entries — list of dicts with `ip` (required), `names` (required, one or more), and optional `fqdn` |
+| `system_settings_install_packages` | `[]` | Additional packages to install (apt) |
+| `system_settings_remove_packages` | `[]` | Packages to remove (apt), e.g. `systemd-resolved` |
+| `system_settings_dns_server` | `""` | Default DNS server written as a `nameserver` entry into `/etc/resolv.conf` (empty = skip) |
 | `system_settings_console_charset` | `UTF-8` | Console character map (CHARMAP) |
 | `system_settings_console_codeset` | `Lat15` | Console code set (CODESET) |
 | `system_settings_console_fontface` | `Terminus` | Console font face (FONTFACE) |
@@ -26,7 +30,7 @@ Configure hostname, locale, keyboard, console, and timezone
 
 ## Dependencies
 
-- `odem.base.common`
+- `odem.base.identity`
 
 ## Example usage
 
