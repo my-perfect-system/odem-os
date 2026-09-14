@@ -7,15 +7,28 @@
   ansible.builtin.lineinfile:
     path: /etc/hosts
     regexp: '^127\.0\.1\.1\s'
-    line: "127.0.1.1\t{{ system_settings_hostname }}"
+    line: "127.0.1.1 {{ system_settings_hostname }}"
     state: present
 
 - name: Populate /etc/hosts custom entries
   ansible.builtin.lineinfile:
     path: /etc/hosts
     regexp: '^{{ item.ip | regex_escape() }}\s'
-    line: "{{ item.ip }}\t{{ (item.names + ([item.fqdn] if item.fqdn is defined else [])) | join(' ') }}"
+    line: "{{ item.ip }}\t{{ (([item.fqdn] if item.fqdn is defined else []) + item.names) | join(' ') }}"
     state: present
   loop: "{{ system_settings_hosts_entries }}"
   loop_control:
     label: "{{ item.ip }}"
+
+- name: Check if cloud-init config exists
+  ansible.builtin.stat:
+    path: /etc/cloud/cloud.cfg
+  register: cloud_cfg
+
+- name: Preserve hostname across reboots
+  ansible.builtin.lineinfile:
+    path: /etc/cloud/cloud.cfg
+    regexp: '^preserve_hostname:\s*'
+    line: 'preserve_hostname: true'
+    state: present
+  when: cloud_cfg.stat.exists
