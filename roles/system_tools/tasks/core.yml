@@ -22,5 +22,5 @@
 
 - name: Run tasksel install standard
   ansible.builtin.shell: |
-    tasksel install standard
+    DEBIAN_FRONTEND=noninteractive tasksel install standard
   become: true
