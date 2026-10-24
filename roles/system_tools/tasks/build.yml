@@ -10,4 +10,7 @@
       - flex
       - bison
       - automake
+      - just
+      - make
+      - git
     state: present
